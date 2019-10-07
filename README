@@ -10,12 +10,10 @@ Problem List
 
     Completed:
 
-        (empty)
+        - Buffon's Needle
 
     Todo:
-        
+
         - Four Color Theorem
             - Extension: Three Color Theorem
-        - Buffon's Needle
-            - Extension: Buffon's Noodle
-        - Sudoku via Backtracing
+        - Sudoku via Back-tracing
