@@ -2,8 +2,11 @@
 | Buffon's Needle |
 +-----------------+
 
+    "Suppose that you drop a short needle on ruled paper - what is then the
+    probability that the needle comes to lie in a position where it crosses
+    one of the lines?" - Georges Louis Leclerc, Comte de Buffon
 
-
-+-----------------+
-| Buffon's Noodle |
-+-----------------+
+    Buffon's probability experiment can be used as a Monte Carlo algorithm to
+    approximate the value of π. In 1901, Mario Lazzarini used this method to
+    come up with the approximation π ≈ 355/113. Here, we implement the resulting
+    algorithm.

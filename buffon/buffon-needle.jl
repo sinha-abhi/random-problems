@@ -6,8 +6,9 @@ Abhi Sinha
 October 07, 2019
 
 Buffon's Needle implementation to estimate π (short needle).
-In 1901, Mario Lazzarini used this method to come up with the approximation
-π ≈ 355/113.
+
+Assume that the lines are drawn vertically and that the needles are of length
+less than the distance between said vertical lines.
 
 Example with distance between the lines of 1 and needle length of 1.
 ```
