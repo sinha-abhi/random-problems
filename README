@@ -1,0 +1,21 @@
++-----------------+
+| Random Problems |
++-----------------+
+
+    Collection of interesting problems and algorithms to solve them.
+
+
+Problem List
+============
+
+    Completed:
+
+        (empty)
+
+    Todo:
+        
+        - Four Color Theorem
+            - Extension: Three Color Theorem
+        - Buffon's Needle
+            - Extension: Buffon's Noodle
+        - Sudoku via Backtracing
