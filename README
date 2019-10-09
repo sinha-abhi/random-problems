@@ -12,8 +12,9 @@ Problem List
 
         - Buffon's Needle
 
-    Todo:
+    In progress:
 
-        - Four Color Theorem
-            - Extension: Three Color Theorem
+        - Graph coloring
+
+    Todo:
         - Sudoku via Back-tracing
