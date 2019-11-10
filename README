@@ -10,12 +10,12 @@
 Problem List
 ============
 
-    Completed:
-        - Buffon's Needle
-
-    In progress:
-        - Graph coloring
+    - Buffon's Needle
+    - Conditioning (with regards to floating point isssues)
         - Root finding
+        - Element-wise summation of a vector
+    - Eigenvalues
+    - Graph coloring^
+    - Sudoku^
 
-    Todo:
-        - Sudoku via Back-tracing
+(* indicates WIP, ^ indicates TODO)
