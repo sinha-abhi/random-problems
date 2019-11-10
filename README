@@ -14,8 +14,8 @@ Problem List
     - Conditioning (with regards to floating point isssues)
         - Root finding
         - Element-wise summation of a vector
-    - Eigenvalues
-    - Graph coloring^
+    - Eigenvalues*
+    - Graph coloring*
     - Sudoku^
 
 (* indicates WIP, ^ indicates TODO)
