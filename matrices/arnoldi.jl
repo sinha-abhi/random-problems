@@ -9,7 +9,7 @@ function eigen_max(A::AbstractMatrix, b::AbstractVector)
     @assert(size(A, 1) == size(b, 1), "vector b has incorrect dimensions")
 
     ε = 1e-12
-    Q, H = arnoldi(A, b, ε)
+    Q, H = arnoldi(A, b, size(A, 1))
     Λ = zeros(size(Q, 2))
 
     for i = 1 : size(Q, 2)
@@ -25,35 +25,29 @@ function eigen_max(A::AbstractMatrix, b::AbstractVector)
     return maximum(Λ)
 end
 
-function arnoldi(A::AbstractMatrix, b::AbstractVector, ε)
+function arnoldi(A::AbstractMatrix, b::AbstractVector, k)
     n = size(A, 1)
-    Q = zeros(n, n + 1) # orthonormal basis for Krylov subspace
-    H = zeros(n + 1, n) # basis for A on Q
+    V = zeros(n, k + 1) # orthonormal basis for Krylov subspace
+    H = zeros(k + 1, k) # basis for A on V
 
-    q = b / norm(b)
-    Q[:, 1] = q
-    for i = 1 : n
-        q = A * q
-        for k = 1 : i
-            H[k, i] = Q[:, k]' * q
-            q = q - H[k, i] * Q[:, k]
+    Q[:, 1] = b / norm(b)
+    for j = 1 : k
+        y = A * V[:, j]
+        for i = 1 : k
+            H[i, j] = V[:, i]' * y
+            y -= H[i, j] * V[:, i]
         end
-        H[i + 1, i] = norm(q)
-        if H[i + 1, i] > ε
-            q = q / H[i + 1, i]
-            Q[:, i + 1] = q
-        else
-            return Q, H
-        end
+        H[j + 1, j] = norm(y)
+        V[:, j + 1] = y / H[j + 1, j]
     end
 
-    return Q, H
+    return V, H
 end
 
 ## An example test case
 A = [[1 2 3]; [2 3 4]; [3 4 5]]
 b = [1; 1; 1]
-Q, H = arnoldi(A, b, 1e-12)
+Q, H = arnoldi(A, b, size(A, 1))
 λ = eigen_max(A, b)
 α = eigmax(A)
 println(λ)
