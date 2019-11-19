@@ -6,12 +6,12 @@ using Plots
 """
 Generates an n x n Strakos matrix.
 
-A Strakos matrix is a diagonal matrix, with the ith element being
+A Strakos matrix is a diagonal matrix, with the ith diagonal element being
     d_i = λ_1 + (i - 1) / (n -1) (λ_n - λ_1) ρ^(n - i).
 """
 function strakos(λ_1, λ_n, ρ, n)
     δλ = λ_n - λ_1
-    d = [λ_1 + (i - 1) / (n - 1) * δλ * ρ^(n - i) for i in collect(1 : n)]
+    d = [λ_1 + (i - 1) / (n - 1) * δλ * ρ^(n - i) for i in 1 : n]
     return Diagonal(d)
 end
 
@@ -23,10 +23,10 @@ function col_residual(V, offset=false)
     k = size(V, 2)
     if !offset
         v1 = V[:, 1]
-        return [log(abs(v1' * V[:, i]) + 10^(-20)) for i in collect(1 : k-1)]
+        return [log(abs(v1' * V[:, i]) + 10^(-20)) for i in 1 : k-1]
     else
         @assert(k > 2, "must have at least 3 columns in V")
-        return [log(abs(V[:, i-2]' * V[:, i]) + 10^(-20)) for i in collect(3 : k-1)]
+        return [log(abs(V[:, i-2]' * V[:, i]) + 10^(-20)) for i in 3 : k-1]
     end
 end
 
