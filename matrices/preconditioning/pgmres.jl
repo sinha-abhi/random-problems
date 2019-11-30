@@ -26,3 +26,10 @@ _, hist_gm = gmres(A, b, restart = rest, tol = ε, maxiter = maxit, log = true)
 p = plot(1 : hist_gm.iters, hist_gm.data[:resnorm], label = ["GMRES"])
 plot!(p, 1 : hist_min.iters, hist_min.data[:resnorm],
       label = ["MINRES"], linestyle = :dot, linewidth = 3)
+
+# Now we work with some preconditioners.
+include("preconditioners.jl")
+
+M = LowerPrecond(ichol(A))
+_, hist_pgm = gmres(A, b, restart = rest, tol = ε,
+                    maxiter = maxit, Pl = M, log = true)
