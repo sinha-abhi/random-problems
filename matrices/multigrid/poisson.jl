@@ -13,8 +13,6 @@ function time_direct_poisson(n)
     return @timed solve_poisson_direct(poisson_setup(nx, ny, (x, y) -> 1))
 end
 
-function time
-
 N = [2^i - 1 for i in 5 : 10]
 direct_results = map(n -> time__direct_poisson(n), N)
 direct_solns = [direct_results[i][1] for i in 1 : 6]
