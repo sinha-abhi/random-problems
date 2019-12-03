@@ -6,9 +6,12 @@ Abhinav Sinha
 """
 import time
 
+import utils
+
 from typing import Mapping
 
-class Sudoku:
+
+class SudokuBacktracer:
     def __init__(self, order, givens: Mapping[int, int]):
         """
         order   order of puzzle
@@ -122,31 +125,7 @@ class Sudoku:
             print("---------------------------")
 
 
-def read_puzzle():
-    """
-    Read puzzle from STDIN. The expected format is: 
-        row,col,value
-    for each given in the puzzle. All unspecified cells are assumed to be blank.
-    When all givens have been entered, input: done.
-    """
-    print("Order?", end = " ")
-    n = int(input())
-    sl = n**2 # side length
-    print("Verify board has side length:", sl)
-    print("Enter givens as\n\trow,col,value\nfollowed by\n\tdone\nwhen complete:")
-
-    givens = dict()
-    s = input()
-    while s != "done":
-        s = s.split(",")
-        c = int(s[0]) * sl + int(s[1])
-        givens[c] = int(s[2])
-        s = input()
-
-    return Sudoku(n, givens)
-
-
 if __name__ == "__main__":
-    puzzle = read_puzzle()
+    puzzle = utils.read_puzzle(utils.Algorithms.backtrace)
     puzzle.solve(True)
 

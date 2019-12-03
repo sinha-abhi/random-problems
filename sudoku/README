@@ -1,3 +1,11 @@
 +--------+
 | Sudoku |
 +--------+
+
+    A classic problem.
+
+Methods
+=======
+
+    - Backtracing (i.e. brute force)
+    - Constraint-problem approach*

@@ -9,13 +9,13 @@
 
 Problem List
 ============
-
+See README under each directory for more details
     - Buffon's Needle
     - Conditioning (with regards to floating point isssues)
         - Root finding
         - Element-wise summation of a vector
     - Matrix Stuff*
     - Graph coloring*
-    - Sudoku^
+    - Sudoku*
 
-(* indicates WIP, ^ indicates TODO)
+(* indicates WIP)
