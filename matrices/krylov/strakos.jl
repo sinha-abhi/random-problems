@@ -38,10 +38,9 @@ n =  30
 v1 = ones(n) / sqrt(n) # v1 = e / √n
 rv = rand(n)
 
-
 R = zeros(n, 2) # plot info
 S = strakos(0.1, 100, 0.9, n)
-for k = 1 : n
+for k = 1 : n - 1
     V, _, _ = lanczos(S, v1, k)
     U, _, _ = lanczos(S, rv, k)
     # matrix residuals
@@ -49,10 +48,12 @@ for k = 1 : n
     R[k, 2] = residual(U)
 end
 
-plot(1 : n, R, label = ["v1" "rv"], title = "Matrix Residuals")
-
 V, _, _ = lanczos(S, v1, n)
 U, _, _ = lanczos(S, rv, n)
+R[n, 1] = residual(V)
+R[n, 2] = residual(U)
+plot(1 : n, R, label = ["v1" "rv"], title = "Matrix Residuals")
+
 CR = [col_residual(V) col_residual(U)] # column residuals
 OCR = [col_residual(V, true) col_residual(U, true)] # offset column residuals
 plot(1 : n, CR, label = ["v1" "rv"], title = "Column Residuals")
