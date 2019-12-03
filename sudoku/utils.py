@@ -6,10 +6,10 @@ Abhinav Sinha
 """
 from enum import Enum
 
-from backtracing import SudokuBacktracer
+from backtracking import SudokuBacktracker
 
 class Algorithms(Enum):
-    backtrace = 1
+    backtrack = 1
     constraint = 2
 
 
@@ -34,8 +34,8 @@ def read_puzzle(alg):
         givens[c] = int(s[2])
         s = input()
 
-    if alg == Algorithms.backtrace:
-        return SudokuBacktracer(n, givens)
+    if alg == Algorithms.backtrack:
+        return SudokuBacktracker(n, givens)
     elif alg == Algorithms.constraint:
         # TODO
         pass

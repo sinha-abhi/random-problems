@@ -11,7 +11,7 @@ import utils
 from typing import Mapping
 
 
-class SudokuBacktracer:
+class SudokuBacktracker:
     def __init__(self, order, givens: Mapping[int, int]):
         """
         order   order of puzzle
@@ -19,7 +19,7 @@ class SudokuBacktracer:
                 each value being between 1 to n^2. The most common Sudoku is
                 of order 3.
         givens  mapping of cell number to its value
-                The cell numbers of a sudoku of order 3 are as follows:
+                For example, the cell numbers of a sudoku of order 3 are:
                 1   2   ...   9
                 10  11  ...   18
                  .      .     .
@@ -125,6 +125,6 @@ class SudokuBacktracer:
 
 
 if __name__ == "__main__":
-    puzzle = utils.read_puzzle(utils.Algorithms.backtrace)
+    puzzle = utils.read_puzzle(utils.Algorithms.backtrack)
     puzzle.solve(True)
 
