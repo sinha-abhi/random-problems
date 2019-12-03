@@ -47,29 +47,28 @@ class SudokuBacktracer:
                 self.board[row][col] = _val
                 if self.__backtrack():
                     return True
-
                 self.board[row][col] = 0
 
         return False
 
-    def __cage(self, row, col):
+    def __box(self, row, col):
         """
-        Finds the cage containing the given cell.
+        Finds the box containing the given cell.
         """
-        r, c = self.__cage_location(row, col)
-        cage = list()
+        r, c = self.__box_location(row, col)
+        box = list()
         for i in range(r, r + self.order):
-            cage.extend(self.board[i][c : c + self.order])
+            box.extend(self.board[i][c : c + self.order])
 
-        return cage
+        return box
 
     def __column(self, col):
         return [row[col] for row in self.board]
 
-    def __cage_location(self, row, col):
-        return self.__cage_start(row), self.__cage_start(col)
+    def __box_location(self, row, col):
+        return self.__box_start(row), self.__box_start(col)
 
-    def __cage_start(self, num):
+    def __box_start(self, num):
         return num // self.order * self.order
 
     def __find_empty(self):
@@ -100,9 +99,9 @@ class SudokuBacktracer:
         """
         col = self.__column(c)
         row = self.__row(r)
-        cage = self.__cage(r, c)
+        box = self.__box(r, c)
 
-        return ((val not in row) and (val not in col) and (val not in cage))
+        return ((val not in row) and (val not in col) and (val not in box))
 
     def print_board(self):
         print(*self.board, sep = "\n")
