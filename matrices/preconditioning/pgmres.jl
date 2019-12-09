@@ -26,7 +26,7 @@ _, hist_min = minres(A, b, tol = ε, maxiter = maxit, log = true)
 _, hist_gm = gmres(A, b, restart = rest, tol = ε, maxiter = maxit, log = true)
 p = plot(1 : hist_gm.iters, hist_gm.data[:resnorm], label = ["GMRES"])
 plot!(p, 1 : hist_min.iters, hist_min.data[:resnorm],
-      label = ["MINRES"], linestyle = :dot, linewidth = 3)
+      label = ["GMRES", "MINRES"], linestyle = :dot, linewidth = 3)
 
 @printf("Iterations for MINRES: %d\n", hist_min.iters)
 @printf("Iterations for GMRES: %d\n", hist_gm.iters)

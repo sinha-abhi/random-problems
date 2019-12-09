@@ -113,7 +113,8 @@ function interpolate(X2)
     return X
 end
 
-""" Apply the Poisson Jacobi operator.
+"""
+Apply the Poisson Jacobi operator.
 The Jacobi iteration is D^{-1} b - D^{-1} (A-D) x^{k}
 """
 function apply_poisson_jacobi(X,B)
@@ -121,6 +122,20 @@ function apply_poisson_jacobi(X,B)
     for j=2:size(B,2)-1
         for i=2:size(B,1)-1
             Y[i,j] = B[i,j]/4 +(X[i+1,j] + X[i-1,j] + X[i,j-1] + X[i,j+1])/4
+        end
+    end
+
+    return Y
+end
+
+"""
+Gauss-Seidel iteration for discretized Poisson's equation.
+"""
+function apply_poisson_gs(X, B)
+    Y = zeros(size(X)...)
+    for j = 2 : size(B, 2) - 1
+        for i = 2 : size(B, 1) - 1
+            Y[i, j] = B[i, j]/4 + (X[i+1, j] + Y[i-1, j] + Y[i, j-1] + X[i, j+1])/4
         end
     end
 
@@ -158,18 +173,28 @@ function restrict(X)
   return X2
 end
 
-function simple_multigrid(nx,ny,niter)
+function simple_multigrid(nx, ny, niter, rel = true)
     F = poisson_setup(nx,ny, (x,y) -> 1)
     X = zeros(size(F)...)
+    E = zeros(niter)
     Xfull = solve_poisson_direct(F)
+    nXfull = norm(Xfull)
 
     for iter=1:niter
         R = poisson_residual(X,F)
         Rhalf = restrict(R)
         X .+= interpolate(solve_poisson_direct(Rhalf))
         X = apply_poisson_jacobi(X,F)
-        println(iter, " ", norm(X - Xfull)/norm(Xfull))
+        if rel
+            E[iter] = norm(X - Xfull) / nXfull
+            println(iter, " ", E[iter])
+        else
+            E[iter] = norm(X - Xfull)
+            println(iter, " ", E[iter])
+        end
     end
+
+    return X, E
 end
 
 function apply_poisson_multigrid(R)

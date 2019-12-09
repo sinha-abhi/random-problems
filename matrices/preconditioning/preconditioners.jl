@@ -1,9 +1,8 @@
 """
 Preconditioners formed by using Incomplete Cholesky and LU Factorizations.
 
-This code is written by David Gleich (https://www.cs.purdue.edu/homes/dgleich/)
-with some changes made by myself (Abhi Sinha).
-
+Originally written by David Gleich (https://www.cs.purdue.edu/homes/dgleich/)
+Some changes made by Abhi Sinha.
 --
 Example for forming preconditioners:
 
