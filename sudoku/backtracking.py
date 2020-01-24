@@ -1,5 +1,5 @@
 """
-Sudoku solving via backtracing (aka brute force).
+Sudoku solving via backtracking (aka brute force).
 
 Abhinav Sinha
 2019-12-03
